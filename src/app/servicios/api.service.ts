@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, switchMap, tap, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ import { Injectable } from '@angular/core';
 export class ApiService {
 
   url = "http://localhost:8000/";
+  csrfToken: string = '';
 
   constructor(private http: HttpClient) { }
 
@@ -14,19 +16,25 @@ export class ApiService {
   get(url: string) {
     return this.http.get(this.url + url);
   }
-
+  getCsrfToken() {
+    return this.http.get(this.url + 'csrf-token').pipe(
+      tap((response: any) => {
+        this.csrfToken = response.csrfToken; // Asegúrate de acceder correctamente al token
+        console.log('Token CSRF:', this.csrfToken);
+      }),
+      catchError(error => {
+        console.error('Error al obtener el token CSRF:', error);
+        return throwError(error); // Manejo de errores
+      })
+    );
+  }
+  
   // Método POST
   post(url: string, form: any) {
-    // Obtener el token CSRF del meta tag
-    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
-    
-    // Configurar las cabeceras
-    const headers = new HttpHeaders({
-      'X-CSRF-TOKEN': csrfToken ? csrfToken : '',
-      'Content-Type': 'application/json', // Puedes cambiar el tipo según lo que envíes
-    });
+    // Esperar a que se obtenga el token CSRF
 
-    return this.http.post(this.url + url, form, { headers });
+        return this.http.post(this.url + url, form);
+
   }
 
   // Método DELETE

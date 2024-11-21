@@ -1,0 +1,28 @@
+<ion-content class="ion-padding">
+  <p class="text-center font-bold text-lg">Editar empleado</p>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Nombre" [(ngModel)]="empleados.nombre_usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Apellido" [(ngModel)]="empleados.apellido_usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Correo" [(ngModel)]="empleados.correo_usuario"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Direccion" [(ngModel)]="empleados.direccion_usuario"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Contraseña" [(ngModel)]="empleados.contrasena"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-select [(ngModel)]="empleados.idRol" labelPlacement="stacked" label="Rol">
+      <ion-select-option *ngFor="let rol of roles" [value]="rol.id_rol">
+        {{rol.nombre_rol}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-button expand="block" (click)="guardar()">Editar empleados</ion-button>
+
+</ion-content>

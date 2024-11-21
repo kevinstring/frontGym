@@ -16,40 +16,37 @@ export class LayoutComponent  implements OnInit {
 
   
 
-  menusYsubMenus: any[] = []; // Define como un array vacío
-
+  categoriasYsubCategorias: any[] = []; // Define como un array vacío
   ngOnInit(): void {
-    this.getMenusySubmenus();
-  }
+
+    this.getCategoriasYSubs();}
   
 
   constructor(private ser:ApiService, private route:Router){
 
   }
 
-  getMenusySubmenus(){
-    // Llamar al servicio que obtiene los menús y submenús
+getCategoriasYSubs(){
+  // Llamar al servicio que obtiene los menús y submenús
 
-   let token= localStorage.getItem('token');
+ let token= localStorage.getItem('rol');
 
-    this.ser.get(`menusySubmenus/1`).subscribe({
-      next: (response:any) => {
-        this.menusYsubMenus=response;
-        console.log('Respuesta recibida:', response);
-        // Maneja la respuesta aquí
-      },
-      error: (error) => {
-        console.error('Ocurrió un error:', error);
-        // Maneja el error aquí
-      }
-    });
-  }
+  this.ser.get(`categoriasYsub/${token}`).subscribe({
+    next: (response:any) => {
+      this.categoriasYsubCategorias=response;
+      console.log('Respuesta recibida:', response);
+      // Maneja la respuesta aquí
+    },
+    error: (error) => {
+      console.error('Ocurrió un error:', error);
+      // Maneja el error aquí
+    }
+  });
+}
 
-  navegarA(menu:string, submenu:string){
-    this.route.navigate([`menu/${menu}/${submenu}`]);
-    
-   
-
-  }
-
+cerrarSesion(){
+  localStorage.removeItem('id_usuario');
+  localStorage.removeItem('rol');
+  this.route.navigate(['/login']);
+}
 }

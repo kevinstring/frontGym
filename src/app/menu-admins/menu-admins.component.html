@@ -1,1 +1,17 @@
-<p>menu-admins works!</p>
+<div class="navbar flex justify-start  bg-primary" *ngIf="!esconderMenuAdmins" >
+    <div class="flex">
+      <a class="text-xl text-warning font-bold mr-8">Admin Mode</a>
+      <div>
+
+      </div>
+    </div>
+    <div class="flex flex-row justify-center items-center">
+    <div class="dropdown dropdown-hove "  *ngFor="let items of menusYsubMenus">
+      <div tabindex="0" role="button" class="btn m-1 text-xs">{{items.nombre_menu}}      </div>
+
+      <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+        <li *ngFor="let item of items.submenus" (click)="irASubMenu(item.id_submenu,item.abrir_modal)"><a>{{item.nombre_submenu}}</a></li>
+      </ul>
+  </div>
+</div>
+  </div>

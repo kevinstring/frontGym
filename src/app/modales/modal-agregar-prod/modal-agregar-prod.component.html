@@ -1,0 +1,39 @@
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-input labelPlacement="stacked" label="Nombre Producto" [(ngModel)]="producto.nombreProd"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-textarea labelPlacement="stacked" label="Descripcion del producto" [(ngModel)]="producto.descProd"></ion-textarea>
+  </ion-item>
+  
+  <ion-item>
+    <ion-input type="number" labelPlacement="stacked" label="Precio" [(ngModel)]="producto.priceProd"></ion-input>
+  </ion-item>
+  
+  <ion-item>
+    <ion-select [(ngModel)]="producto.idCat" labelPlacement="stacked" label="Subcategoría">
+      <ion-select-option *ngFor="let subcat of subcategorias" [value]="subcat.id_sub_categoria">
+        {{subcat.nombre_subcategoria}}
+      </ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" labelPlacement="stacked" label="Foto Url" [(ngModel)]="producto.fotoUrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="text" labelPlacement="stacked" label="Video Url" [(ngModel)]="producto.videoUrl"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="number" labelPlacement="stacked" label="Cantidad" [(ngModel)]="producto.cantProd"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-input type="number" labelPlacement="stacked" label="Días de Garantía" [(ngModel)]="producto.diasProd"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="agregarProducto()">Agregar Producto</ion-button>
+</ion-content>

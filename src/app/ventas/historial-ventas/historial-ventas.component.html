@@ -1,0 +1,32 @@
+<ion-content>
+  <app-menu-admins></app-menu-admins>
+  <app-layout></app-layout>
+  <div>
+    <div class="overflow-x-auto">
+      <table class="table">
+        <!-- head -->
+        <thead>
+          <tr>
+          
+            <th>Accion</th>
+            <th>Descripcion</th>
+            <th>nombre producto</th>
+            <th>nombre usuario</th>
+            <th>fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- row 1 -->
+          <tr *ngFor="let venta of historialVentas">
+            <th>{{venta.accion}}</th>
+            <th>{{venta.descripcion}}</th>
+            <th>{{venta.nombre_producto}}</th>
+            <th>{{venta.nombre_usuario}}</th>
+            <th>{{venta.fecha}}</th>
+
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>

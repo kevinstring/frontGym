@@ -3,6 +3,7 @@ import { Component,  OnInit } from '@angular/core';
 import {  FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../servicios/api.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Route, Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit{
 
 
   
-  constructor(private ser:ApiService){
+  constructor(private ser:ApiService,private route:Router){
 
   }
 
@@ -35,11 +36,13 @@ submit() {
 
   this.ser.post('login', form).subscribe({
     next: (response:any) => {
-      console.log('Respuesta recibida:', response);
+      console.log('Respuesta recibida:', response.response);
       if(response.success){
-      localStorage.setItem('token', response.idUsuario);
-      window.location.href = '/home ';
-      }else{
+      localStorage.setItem('id_usuario', response.id_usuario);
+      localStorage.setItem('rol', response.id_rol);
+      console.log();
+      this.route.navigate(['/']);
+    }else{
         alert('Usuario o contraseña incorrectos');
       }
       // Maneja la respuesta aquí

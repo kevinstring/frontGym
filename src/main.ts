@@ -7,6 +7,7 @@ import { AppComponent } from './app/app.component';
 import { provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule, provideAnimations } from '@angular/platform-browser/animations';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { provideIonicAngular } from '@ionic/angular/standalone';
 bootstrapApplication(AppComponent, {
   providers: [
     {provide:LocationStrategy,useClass: HashLocationStrategy},
@@ -14,7 +15,8 @@ bootstrapApplication(AppComponent, {
 
     provideRouter(routes),
     provideHttpClient(),
-    provideAnimations(),
+    provideAnimations(), provideIonicAngular({}),
+    
     
 
   ],

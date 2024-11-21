@@ -1,0 +1,26 @@
+<div class="overflow-x-auto">
+  <table class="table">
+    <!-- head -->
+    <thead>
+      <tr>
+        <th>Nombre</th>  
+        <th>Apellido</th>  
+        <th>Puesto</th>
+        <th>Direccion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- row 1 -->
+      <tr *ngFor="let empleado of empleados">
+        <th>{{empleado.nombre_usuario}}</th>
+        <td>{{empleado.apellido_usuario}}</td>
+        <td>{{empleado.rol}}</td>
+        <td>{{empleado.direccion_usuario}}</td>
+        <td>
+          <button class="btn btn-primary btn-xs" (click)="editarEmpleado(empleado)">Editar</button>
+          <button class="btn btn-danger btn-xs" (click)="eliminarEmpleado(empleado)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
